@@ -1,15 +1,29 @@
-import { Controller, Get } from '@nestjs/common';
-import { Crud, CrudController } from '@nestjsx/crud';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import {  Observable } from 'rxjs';
+import { DeleteResult, UpdateResult } from 'typeorm';
 import { Applicants } from './applicants.entity';
 import { ApplicantsService } from './applicants.service';
 
-@Crud({
-    model: {
-        type:  Applicants
-    }
-})
+
 @Controller('applicants')
-export class ApplicantsController implements CrudController<Applicants>{
-    constructor(public service: ApplicantsService){}
+export class ApplicantsController{
+    constructor(public applicantsservice: ApplicantsService){}
+
+    @Post()
+    create(@Body() post:Applicants):Observable<Applicants>{
+        return this.applicantsservice.createApplicant(post)
+    }
+    @Get()
+    findAll():Observable<Applicants[]>{
+        return this.applicantsservice.findAllApplicants();
+    }
+    @Put()
+    update(@Param('id')id:number,@Body() applicants:Applicants):Observable<UpdateResult>{
+        return this.applicantsservice.updateApplicants(id,applicants)
+    }
+    @Delete()
+    delete(@Param('id') id: number): Observable<DeleteResult>{
+        return this.applicantsservice.deleteApplicants(id);
+    }
    
 }

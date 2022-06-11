@@ -7,6 +7,10 @@ export class Applicants{
     id: number;
 
     @ApiProperty()
+    @Column({type: 'timestamp', default: ()=>'CURRENT_TIMESTAMP'})
+    createdAt:Date;
+
+    @ApiProperty()
     @Column()
     name: string;
 
