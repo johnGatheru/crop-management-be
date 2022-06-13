@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { MulterModule } from '@nestjs/platform-express';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Applicants } from './applicants/applicants.entity';
 import { ApplicantsModule } from './applicants/applicants.module';
@@ -17,7 +18,12 @@ import { MessagesModule } from './messages/messages.module';
     entities:[Applicants, Messages],
   
     synchronize: true,
-  }), MessagesModule,],
+  }), MessagesModule,
+  MulterModule.register({
+    dest: './applicantsdata'
+  })
+],
+ 
   
 })
 export class AppModule {}

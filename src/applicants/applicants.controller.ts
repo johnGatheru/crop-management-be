@@ -10,14 +10,15 @@ import { ApplicantsService } from './applicants.service';
 export class ApplicantsController{
     constructor(public applicantsservice: ApplicantsService){}
 
-    @Post()
-    create(@Body() post:Applicants):Observable<Applicants>{
-        return this.applicantsservice.createApplicant(post)
-    }
     @Post('uploadfile')
     @UseInterceptors(FileInterceptor('file'))
-    uploadFile(@UploadedFile() file: Express.Multer.File){
-        console.log(file)
+    uploadFile(@Body() aplicantsInfo: Applicants,@UploadedFile() file: Express.Multer.File){
+        aplicantsInfo.academic = file.filename;
+        return this.applicantsservice.saveApplicants(aplicantsInfo);
+
+        // return {filename: file.filename,
+        // message: 'file uploaded successful'
+        // }
 
     }
 

@@ -10,7 +10,7 @@ export class ApplicantsService {
         @InjectRepository(Applicants) 
         private readonly ApplicantsRepository: Repository<Applicants>
         ){}
-        createApplicant(applicants: Applicants):Observable<Applicants>{
+        saveApplicants(applicants: Applicants):Observable<Applicants>{
             return from(this.ApplicantsRepository.save(applicants));
         }
         findAllApplicants():Observable<Applicants[]>{
