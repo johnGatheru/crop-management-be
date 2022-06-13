@@ -1,4 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import {  Observable } from 'rxjs';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { Applicants } from './applicants.entity';
@@ -13,6 +14,14 @@ export class ApplicantsController{
     create(@Body() post:Applicants):Observable<Applicants>{
         return this.applicantsservice.createApplicant(post)
     }
+    @Post('uploadfile')
+    @UseInterceptors(FileInterceptor('file'))
+    uploadFile(@UploadedFile() file: Express.Multer.File){
+        console.log(file)
+
+    }
+
+
     @Get()
     findAll():Observable<Applicants[]>{
         return this.applicantsservice.findAllApplicants();
