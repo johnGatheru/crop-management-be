@@ -24,16 +24,16 @@ export class ApplicantsController{
 
 
     @Get()
-    findAll():Observable<Applicants[]>{
-        return this.applicantsservice.findAllApplicants();
+   async findAll(){
+        return await this.applicantsservice.findAllApplicants();
     }
     @Put()
-    update(@Param('id')id:number,@Body() applicants:Applicants):Observable<UpdateResult>{
-        return this.applicantsservice.updateApplicants(id,applicants)
+   async update(@Param('id')id:number,@Body() applicants:Applicants){
+        return await this.applicantsservice.updateApplicants(id,applicants)
     }
     @Delete()
-    delete(@Param('id') id: number): Observable<DeleteResult>{
-        return this.applicantsservice.deleteApplicants(id);
+    async delete(@Param('id') id: number){
+        return await this.applicantsservice.deleteApplicants(id);
     }
    
 }

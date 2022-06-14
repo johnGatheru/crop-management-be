@@ -10,17 +10,17 @@ export class ApplicantsService {
         @InjectRepository(Applicants) 
         private readonly ApplicantsRepository: Repository<Applicants>
         ){}
-        saveApplicants(applicants: Applicants):Observable<Applicants>{
-            return from(this.ApplicantsRepository.save(applicants));
+       async saveApplicants(applicants: Applicants){
+            return await this.ApplicantsRepository.save(applicants);
         }
-        findAllApplicants():Observable<Applicants[]>{
-            return from(this.ApplicantsRepository.find())
+       async findAllApplicants(){
+            return await this.ApplicantsRepository.find();
         }
-        updateApplicants(id: number,applicants:Applicants):Observable<UpdateResult>{
-            return from(this.ApplicantsRepository.update(id,applicants))
+       async updateApplicants(id: number,applicants:Applicants){
+            return await this.ApplicantsRepository.update(id,applicants);
 
         }
-        deleteApplicants(id: number): Observable<DeleteResult>{
-            return from(this.ApplicantsRepository.delete(id));
+      async deleteApplicants(id: number){
+            return await this.ApplicantsRepository.delete(id);
         }
 }
