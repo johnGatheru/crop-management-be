@@ -1,6 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import {  Observable } from 'rxjs';
-import { DeleteResult, UpdateResult } from 'typeorm';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { Messages } from './messages.entity';
 import { MessagesService } from './messages.service';
 
@@ -22,7 +20,7 @@ export class MessagesController{
         return await this.messagesservice.updateMessages(id,messages)
     }
     @Delete()
-    async delete(@Param('id') id: number){
+    async delete(@Query('id') id: number){
         return await this.messagesservice.deleteMessages(id);
     }
    
