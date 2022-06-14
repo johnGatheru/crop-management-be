@@ -10,17 +10,17 @@ export class MessagesService {
         @InjectRepository(Messages) 
         private readonly MessagesRepository: Repository<Messages>
         ){}
-        createMessage(messages: Messages):Observable<Messages>{
-            return from(this.MessagesRepository.save(messages));
+       async createMessage(messages: Messages){
+            return await this.MessagesRepository.save(messages);
         }
-        findAllMessages():Observable<Messages[]>{
-            return from(this.MessagesRepository.find())
+       async findAllMessages(){
+            return await this.MessagesRepository.find()
         }
-        updateMessages(id: number,messages:Messages):Observable<UpdateResult>{
-            return from(this.MessagesRepository.update(id,messages))
+       async updateMessages(id: number,messages:Messages){
+            return await this.MessagesRepository.update(id,messages)
 
         }
-        deleteMessages(id: number): Observable<DeleteResult>{
-            return from(this.MessagesRepository.delete(id));
+        async deleteMessages(id: number){
+            return await this.MessagesRepository.delete({id});
         }
 }

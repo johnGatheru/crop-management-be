@@ -10,20 +10,20 @@ export class MessagesController{
     constructor(public messagesservice: MessagesService){}
 
     @Post()
-    create(@Body() post:Messages):Observable<Messages>{
-        return this.messagesservice.createMessage(post)
+   async create(@Body() post:Messages){
+        return await this.messagesservice.createMessage(post)
     }
     @Get()
-    findAll():Observable<Messages[]>{
-        return this.messagesservice.findAllMessages();
+     async findAll(){
+        return await this.messagesservice.findAllMessages();
     }
     @Put()
-    update(@Param('id')id:number,@Body() messages:Messages):Observable<UpdateResult>{
-        return this.messagesservice.updateMessages(id,messages)
+   async update(@Param('id')id:number,@Body() messages:Messages){
+        return await this.messagesservice.updateMessages(id,messages)
     }
     @Delete()
-    delete(@Param('id') id: number): Observable<DeleteResult>{
-        return this.messagesservice.deleteMessages(id);
+    async delete(@Param('id') id: number){
+        return await this.messagesservice.deleteMessages(id);
     }
    
 }
