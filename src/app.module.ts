@@ -16,12 +16,11 @@ import { MessagesModule } from './messages/messages.module';
     password: 'G97drKBMAtEky8REvGhe',
     database: 'railway',
     entities:[Applicants, Messages],
+    dropSchema:true,
   
     synchronize: true,
   }), MessagesModule,
-  MulterModule.register({
-    dest: './applicantsdata'
-  })
+ 
 ],
  
   

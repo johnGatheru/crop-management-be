@@ -1,6 +1,11 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
+class AcademicData {
+    name: string;
+    file: string;
+}
+
 @Entity() 
 export class Applicants{
     @PrimaryGeneratedColumn()
@@ -10,17 +15,18 @@ export class Applicants{
     @Column({type: 'timestamp', default: ()=>'CURRENT_TIMESTAMP'})
     createdAt:Date;
 
+
+    @ApiProperty()
+    @Column()
+    jobTitle: string;
+
     @ApiProperty()
     @Column()
     name: string;
 
     @ApiProperty()
     @Column()
-    id_number: number;
-
-    @ApiProperty()
-    @Column()
-    phone_number: number;
+    phoneNumber: number;
 
     @ApiProperty()
     @Column()
@@ -28,11 +34,26 @@ export class Applicants{
 
     @ApiProperty()
     @Column()
-    selfie: string;
+    idImagepath: string;
 
     @ApiProperty()
     @Column()
-    academic: string;
+    selfie: string;
+
+    @ApiProperty()
+    @Column('jsonb',{nullable: true})
+    academic: AcademicData;
+
+    @ApiProperty()
+    @Column()
+    idImagefile: string;
+
+    @ApiProperty()
+    @Column()
+    idImagename: string
+   
+
+   
 
 
 }

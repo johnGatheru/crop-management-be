@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { from, Observable } from 'rxjs';
-import { DeleteResult, Repository, UpdateResult } from 'typeorm';
+import { Repository} from 'typeorm';
 import { Applicants } from './applicants.entity';
 
 @Injectable() 
@@ -10,7 +10,7 @@ export class ApplicantsService {
         @InjectRepository(Applicants) 
         private readonly ApplicantsRepository: Repository<Applicants>
         ){}
-       async saveApplicants(applicants: Applicants){
+       async saveApplicants(applicants: any){
             return await this.ApplicantsRepository.save(applicants);
         }
        async findAllApplicants(){
