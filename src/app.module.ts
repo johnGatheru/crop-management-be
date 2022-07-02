@@ -10,10 +10,10 @@ import { MessagesModule } from './messages/messages.module';
 @Module({
   imports: [ ApplicantsModule,TypeOrmModule.forRoot({
     type: 'postgres',
-    host: 'containers-us-west-66.railway.app',
-    port: 5553,
+    host: 'containers-us-west-54.railway.app',
+    port: 6081,
     username: 'postgres',
-    password: 'G97drKBMAtEky8REvGhe',
+    password: 'AZ4EFYCy5IHst99HTAv6',
     database: 'railway',
     entities:[Applicants, Messages],
     dropSchema:true,

@@ -6,7 +6,9 @@ import {
   Param,
   Post,
   Put,
+  Query,
   Req,
+  StreamableFile,
   UploadedFile,
   UploadedFiles,
   UseInterceptors,
@@ -18,8 +20,9 @@ import {
   FilesInterceptor,
 } from '@nestjs/platform-express';
 import { Request } from 'express';
+import { createReadStream, fstat } from 'fs';
 import { diskStorage } from 'multer';
-import { extname } from 'path';
+import { extname, join } from 'path';
 import { Observable } from 'rxjs';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { Applicants } from './applicants.entity';
@@ -30,43 +33,48 @@ export class ApplicantsController {
   constructor(public applicantsservice: ApplicantsService) {}
 
   @Post('/uploadfile')
-  @UseInterceptors(
-    AnyFilesInterceptor(),
-    // FileFieldsInterceptor([
-    //   { name: 'selfie', maxCount: 1 },
-    //   { name: 'id', maxCount: 1 },
-    //   { name: 'academic', maxCount: 7 },
-    // ]),
-    // FilesInterceptor('academic', 7, {
-    //   storage: diskStorage({
-    //     destination: './files',
-
-    //     filename: (req, file, callback) => {
-    //       const filename = `${Date.now()}_${file.originalname
-    //         .split(' ')
-    //         .join('_')
-    //         .toLowerCase()}`;
-
-    //       callback(null, filename);
-    //     },
-    //   }),
-    // }),
-  )
-  handleUpload(
+  @UseInterceptors(AnyFilesInterceptor())
+  async handleUpload(
     @UploadedFiles()
     files: Array<Express.Multer.File>,
     @Req() req: Request,
   ) {
     const { name, jobTitle, phoneNumber, email } = req.body;
-    console.log(files);
-    //   const {path,originalname, filename }= file
 
-    //   let objItems = {name, jobTitle, phoneNumber, email,idImagepath:path, idImagename:originalname, idImagefile:filename}
+    let academicPath = '';
+    let selfiePath = '';
+    let idPath = '';
 
-    //     return this.applicantsservice.saveApplicants(objItems);
+    for (let i = 0; i < req.files.length; i++) {
+      if (req.files[i].fieldname === 'academic') {
+        academicPath = files[i].path;
+      }
+      if (req.files[i].fieldname === 'selfie') {
+        selfiePath = files[i].path;
+      }
+      if (req.files[i].fieldname === 'id') {
+        idPath = files[i].path;
+      }
+    }
+
+    let objItems = {
+      name,
+      jobTitle,
+      phoneNumber,
+      email,
+      academicPath,
+      selfiePath,
+      idPath,
+    };
+
+    return this.applicantsservice.saveApplicants(objItems);
   }
 
   @Get()
+  // getFile(): StreamableFile {
+  //   const file = createReadStream(join(process.cwd(), 'package.json'));
+  //   return new StreamableFile(file);
+  // }
   async findAll() {
     return await this.applicantsservice.findAllApplicants();
   }
@@ -75,7 +83,7 @@ export class ApplicantsController {
     return await this.applicantsservice.updateApplicants(id, applicants);
   }
   @Delete()
-  async delete(@Param('id') id: number) {
+  async delete(@Query('id') id: number) {
     return await this.applicantsservice.deleteApplicants(id);
   }
 }
