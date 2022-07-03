@@ -41,19 +41,19 @@ export class ApplicantsController {
   ) {
     const { name, jobTitle, phoneNumber, email } = req.body;
 
-    let academicPath = '';
+    // let academicPath = '';
     let selfiePath = '';
     let idPath = '';
 
-    for (let i = 0; i < req.body.files.length; i++) {
-      if (req.body.files[i].fieldname === 'academic') {
-        academicPath = files[i].path;
-        console.log(academicPath);
-      }
-      if (req.body.files[i].fieldname === 'selfie') {
+    for (let i = 0; i < files.length; i++) {
+      // if (files[i].fieldname === 'academic') {
+      //   academicPath = files[i].path;
+      //   console.log(academicPath);
+      // }
+      if (files[i].fieldname === 'selfie') {
         selfiePath = files[i].path;
       }
-      if (req.body.files[i].fieldname === 'id') {
+      if (files[i].fieldname === 'id') {
         idPath = files[i].path;
       }
     }
@@ -63,7 +63,7 @@ export class ApplicantsController {
       jobTitle,
       phoneNumber,
       email,
-      academicPath,
+      academicPath: '',
       selfiePath,
       idPath,
     };
