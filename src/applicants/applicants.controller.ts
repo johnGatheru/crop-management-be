@@ -45,14 +45,15 @@ export class ApplicantsController {
     let selfiePath = '';
     let idPath = '';
 
-    for (let i = 0; i < req.files.length; i++) {
-      if (req.files[i].fieldname === 'academic') {
+    for (let i = 0; i < req.body.files.length; i++) {
+      if (req.body.files[i].fieldname === 'academic') {
         academicPath = files[i].path;
+        console.log(academicPath);
       }
-      if (req.files[i].fieldname === 'selfie') {
+      if (req.body.files[i].fieldname === 'selfie') {
         selfiePath = files[i].path;
       }
-      if (req.files[i].fieldname === 'id') {
+      if (req.body.files[i].fieldname === 'id') {
         idPath = files[i].path;
       }
     }
