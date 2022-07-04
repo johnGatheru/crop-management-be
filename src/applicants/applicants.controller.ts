@@ -41,13 +41,14 @@ export class ApplicantsController {
   ) {
     const { name, jobTitle, phoneNumber, email } = req.body;
 
-    let academicPath = '';
+    let academicPath = [];
     let selfiePath = '';
     let idPath = '';
 
     for (let i = 0; i < files.length; i++) {
       if (files[i].fieldname === 'academic') {
-        academicPath = files[i].path;
+        academicPath.push(files[i].path);
+        console.log(academicPath);
       }
       if (files[i].fieldname === 'selfie') {
         selfiePath = files[i].path;
