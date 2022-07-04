@@ -46,10 +46,10 @@ export class ApplicantsController {
     let idPath = '';
 
     for (let i = 0; i < files.length; i++) {
-      // if (files[i].fieldname === 'academic') {
-      //   academicPath = files[i].path;
-      //   console.log(academicPath);
-      // }
+      if (files[i].fieldname === 'academic') {
+        academicPath = files[i].path;
+       
+      }
       if (files[i].fieldname === 'selfie') {
         selfiePath = files[i].path;
       }
