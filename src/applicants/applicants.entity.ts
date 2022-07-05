@@ -5,6 +5,14 @@ class AcademicData {
   name: string;
   file: string;
 }
+class IdData {
+  name: string;
+  file: string;
+}
+class SelfieData {
+  name: string;
+  file: string;
+}
 
 @Entity()
 export class Applicants {
@@ -32,12 +40,12 @@ export class Applicants {
   email: string;
 
   @ApiProperty()
-  @Column()
-  idPath: string;
+  @Column('jsonb', { nullable: true })
+  idPath: IdData;
 
   @ApiProperty()
-  @Column()
-  selfiePath: string;
+  @Column('jsonb', { nullable: true })
+  selfiePath: SelfieData;
 
   @ApiProperty()
   @Column('jsonb', { nullable: true })
