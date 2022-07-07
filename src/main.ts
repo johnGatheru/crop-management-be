@@ -13,9 +13,9 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'files'), {
     prefix: '/files/',
   });
-  app.use((req, res: Response, next) => {
-    res.setHeader('Content-Disposition', 'attachment');
-  });
+  // app.use((req, res: Response, next) => {
+  //   res.setHeader('Content-Disposition', 'attachment');
+  // });
   const config = new DocumentBuilder()
     .setTitle('Rex api')
     .setDescription('Description')
