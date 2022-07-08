@@ -26,5 +26,6 @@ import { ApplicantsService } from './applicants.service';
   ],
   controllers: [ApplicantsController],
   providers: [ApplicantsService],
+  exports: [TypeOrmModule],
 })
 export class ApplicantsModule {}

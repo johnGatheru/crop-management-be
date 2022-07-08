@@ -11,8 +11,10 @@ import {
   StreamableFile,
   UploadedFile,
   UploadedFiles,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import {
   AnyFilesInterceptor,
   FileFieldsInterceptor,
@@ -24,13 +26,22 @@ import { createReadStream, fstat } from 'fs';
 import { diskStorage } from 'multer';
 import { extname, join } from 'path';
 import { Observable } from 'rxjs';
+import { JwtAuthGuard } from 'src/auth/jwt.auth.guard';
+import { LocalAuthGuard } from 'src/auth/local-auth.guard';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { Applicants } from './applicants.entity';
 import { ApplicantsService } from './applicants.service';
 
 @Controller('/applicants')
 export class ApplicantsController {
-  constructor(public applicantsservice: ApplicantsService) {}
+  constructor(private applicantsservice: ApplicantsService) {}
+
+  // @UseGuards(AuthGuard('local'))
+  // @Post('/login')
+  // login(@Req() req): any {
+  //   console.log('touched');
+  //   return req.user;
+  // }
 
   @Post('/uploadfile')
   @UseInterceptors(AnyFilesInterceptor())
@@ -56,7 +67,6 @@ export class ApplicantsController {
           academicPath: files[i].path,
         };
         academicPath.push(academic);
-        console.log(academicPath);
       }
       if (files[i].fieldname === 'selfie') {
         selfiePath = {
@@ -69,7 +79,6 @@ export class ApplicantsController {
           filename: files[i].originalname,
           academicPath: files[i].path,
         };
-        console.log(idPath);
       }
     }
 
@@ -86,18 +95,20 @@ export class ApplicantsController {
     return this.applicantsservice.saveApplicants(objItems);
   }
 
-  @Get()
   // getFile(): StreamableFile {
   //   const file = createReadStream(join(process.cwd(), 'package.json'));
   //   return new StreamableFile(file);
   // }
+  @UseGuards(JwtAuthGuard)
+  @Get()
   async findAll() {
     return await this.applicantsservice.findAllApplicants();
   }
-  @Put()
-  async update(@Param('id') id: number, @Body() applicants: Applicants) {
-    return await this.applicantsservice.updateApplicants(id, applicants);
-  }
+  // @Put()
+  // async update(@Param('id') id: number, @Body() applicants: Applicants) {
+  //   return await this.applicantsservice.updateApplicants(id, applicants);
+  // }
+  @UseGuards(JwtAuthGuard)
   @Delete()
   async delete(@Query('id') id: number) {
     return await this.applicantsservice.deleteApplicants(id);
