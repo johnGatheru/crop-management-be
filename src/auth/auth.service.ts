@@ -1,5 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { STATUS_CODES } from 'http';
 import { UserService } from 'src/user/user.service';
 
 @Injectable()
@@ -16,8 +17,12 @@ export class AuthService {
       const { password, username, ...rest } = user;
       // this.login(admin)
       return rest;
+    } else {
+      throw new HttpException(
+        'error, check email or password used',
+        HttpStatus.BAD_REQUEST,
+      );
     }
-    return null;
   }
 
   async login(user: any) {
