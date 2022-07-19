@@ -15,8 +15,8 @@ export class ApplicantsService {
   }
   async findAllApplicants(page: number = 1) {
     return await this.ApplicantsRepository.find({
-      take: 5,
-      skip: 5 * (page - 1),
+      take: 2,
+      skip: 2 * (page - 1),
     });
   }
   //    async updateApplicants(id: number,applicants:Applicants){
