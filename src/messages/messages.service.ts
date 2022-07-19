@@ -13,8 +13,11 @@ export class MessagesService {
   async createMessage(messages: Messages) {
     return await this.MessagesRepository.save(messages);
   }
-  async findAllMessages() {
-    return await this.MessagesRepository.find();
+  async findAllMessages(page: number = 1) {
+    return await this.MessagesRepository.find({
+      take: 10,
+      skip: 10 * (page - 1),
+    });
   }
   //    async updateMessages(id: number,messages:Messages){
   //         return await this.MessagesRepository.update(id,messages)

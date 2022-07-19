@@ -99,16 +99,16 @@ export class ApplicantsController {
   //   const file = createReadStream(join(process.cwd(), 'package.json'));
   //   return new StreamableFile(file);
   // }
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get()
-  async findAll() {
-    return await this.applicantsservice.findAllApplicants();
+  async findAll(@Query('page') page: number) {
+    return await this.applicantsservice.findAllApplicants(page);
   }
   // @Put()
   // async update(@Param('id') id: number, @Body() applicants: Applicants) {
   //   return await this.applicantsservice.updateApplicants(id, applicants);
   // }
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Delete()
   async delete(@Query('id') id: number) {
     return await this.applicantsservice.deleteApplicants(id);
