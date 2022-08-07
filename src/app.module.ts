@@ -16,10 +16,10 @@ import { UserModule } from './user/user.module';
     ApplicantsModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'containers-us-west-54.railway.app',
-      port: 6081,
+      host: 'containers-us-west-43.railway.app',
+      port: 6290,
       username: 'postgres',
-      password: 'AZ4EFYCy5IHst99HTAv6',
+      password: 'WY8pAPadqMS54TPk2lMv',
       database: 'railway',
       entities: [Applicants, Messages, User],
       dropSchema: false,
