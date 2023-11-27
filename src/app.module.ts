@@ -16,11 +16,15 @@ import { UserModule } from './user/user.module';
     ApplicantsModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'containers-us-west-43.railway.app',
-      port: 6290,
-      username: 'postgres',
-      password: 'WY8pAPadqMS54TPk2lMv',
-      database: 'railway',
+      host: 'ep-dry-lake-94038782-pooler.us-east-1.postgres.vercel-storage.com',
+      port: 5432,
+      username: 'default',
+      password: 'cUQ1m7tEiDqs',
+      database: 'verceldb',
+      ssl: true,
+
+      // connectString:
+      //   'postgres://default:cUQ1m7tEiDqs@ep-dry-lake-94038782-pooler.us-east-1.postgres.vercel-storage.com:5432/verceldb',
       entities: [Applicants, Messages, User],
       dropSchema: true,
       synchronize: true,

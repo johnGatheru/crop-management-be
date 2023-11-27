@@ -21,7 +21,7 @@ export class MessagesController {
   async create(@Body() post: Messages) {
     return await this.messagesservice.createMessage(post);
   }
-  @UseGuards(JwtAuthGuard)
+
   @Get()
   async findAll(@Query('page') page: number) {
     return await this.messagesservice.findAllMessages(page);
@@ -30,7 +30,7 @@ export class MessagesController {
   //   async update(@Param('id') id: number, @Body() messages: Messages) {
   //     return await this.messagesservice.updateMessages(id, messages);
   //   }
-  @UseGuards(JwtAuthGuard)
+
   @Delete()
   async delete(@Query('id') id: number) {
     return await this.messagesservice.deleteMessages(id);

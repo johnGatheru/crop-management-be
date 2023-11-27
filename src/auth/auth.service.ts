@@ -9,7 +9,6 @@ export class AuthService {
   constructor(
     private userService: UserService,
     private jwtService: JwtService,
-    private configService: ConfigService,
   ) {}
 
   async validateUser(username: string, password: string): Promise<any> {
