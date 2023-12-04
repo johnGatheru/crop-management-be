@@ -4,6 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
 import { Response } from 'express';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -16,13 +17,16 @@ async function bootstrap() {
   // app.use((req, res: Response, next) => {
   //   res.setHeader('Content-Disposition', 'attachment');
   // });
-  const config = new DocumentBuilder()
+
+  const config = app.get(ConfigService);
+  const docConfig = new DocumentBuilder()
     .setTitle('Rex api')
     .setDescription('Description')
     .setVersion('1.0')
     // .addTag('cats')
     .build();
-  const document = SwaggerModule.createDocument(app, config);
+
+  const document = SwaggerModule.createDocument(app, docConfig);
   SwaggerModule.setup('/', app, document);
   await app.listen(3333);
 }
