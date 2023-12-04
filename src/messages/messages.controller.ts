@@ -24,7 +24,7 @@ export class MessagesController {
 
   @Get()
   async findAll(@Query('page') page: number) {
-    return await this.messagesservice.findAllMessages(page);
+    return await this.messagesservice.findAllMessages();
   }
   //   @Put()
   //   async update(@Param('id') id: number, @Body() messages: Messages) {

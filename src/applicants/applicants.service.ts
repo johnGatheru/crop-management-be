@@ -13,7 +13,7 @@ export class ApplicantsService {
   async saveApplicants(applicants: any) {
     return await this.ApplicantsRepository.save(applicants);
   }
-  async findAllApplicants(page: number = 1) {
+  async findAllApplicants() {
     return await this.ApplicantsRepository.find();
   }
   //    async updateApplicants(id: number,applicants:Applicants){
