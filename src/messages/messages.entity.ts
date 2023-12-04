@@ -7,18 +7,26 @@ export class Messages {
   id: number;
 
   @ApiProperty()
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date;
+
+  @ApiProperty()
   @Column()
   name: string;
 
   @ApiProperty()
   @Column()
-  phone_number: number;
+  unit: number;
 
   @ApiProperty()
   @Column()
-  email: string;
+  quantity: number;
 
   @ApiProperty()
   @Column()
-  message: string;
+  type: string;
+
+  @ApiProperty()
+  @Column()
+  sellPrice: number;
 }

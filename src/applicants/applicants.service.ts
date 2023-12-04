@@ -14,10 +14,7 @@ export class ApplicantsService {
     return await this.ApplicantsRepository.save(applicants);
   }
   async findAllApplicants(page: number = 1) {
-    return await this.ApplicantsRepository.find({
-      take: 2,
-      skip: 2 * (page - 1),
-    });
+    return await this.ApplicantsRepository.find();
   }
   //    async updateApplicants(id: number,applicants:Applicants){
   //         return await this.ApplicantsRepository.update(id,applicants);

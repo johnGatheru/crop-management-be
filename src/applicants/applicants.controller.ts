@@ -43,58 +43,59 @@ export class ApplicantsController {
   //   return req.user;
   // }
 
-  @Post('/uploadfile')
-  @UseInterceptors(AnyFilesInterceptor())
-  async handleUpload(
-    @UploadedFiles()
-    files: Array<Express.Multer.File>,
-    @Req() req: Request,
-  ) {
-    const { name, jobTitle, phoneNumber, email } = req.body;
+  // @Post('/addexpenses')
+  // @UseInterceptors(AnyFilesInterceptor())
+  // async handleUpload(
+  //   @UploadedFiles()
+  //   files: Array<Express.Multer.File>,
+  //   @Req() req: Request,
+  // ) {
+  //   const { name, jobTitle, phoneNumber, email } = req.body;
 
-    let academicPath = [];
-    let selfiePath = {};
-    let idPath = {};
-    let academic = {};
+  //   let academicPath = [];
+  //   let selfiePath = {};
+  //   let idPath = {};
+  //   let academic = {};
 
-    for (let i = 0; i < files.length; i++) {
-      if (files[i].fieldname === 'academic') {
-        // academicPath.push(files[i].path);
-        // academicPath.push(files[i].originalname);
+  //   for (let i = 0; i < files.length; i++) {
+  //     if (files[i].fieldname === 'academic') {
 
-        academic = {
-          filename: files[i].originalname,
-          academicPath: files[i].path,
-        };
-        academicPath.push(academic);
-      }
-      if (files[i].fieldname === 'selfie') {
-        selfiePath = {
-          filename: files[i].originalname,
-          academicPath: files[i].path,
-        };
-      }
-      if (files[i].fieldname === 'id') {
-        idPath = {
-          filename: files[i].originalname,
-          academicPath: files[i].path,
-        };
-      }
-    }
+  //       academic = {
+  //         filename: files[i].originalname,
+  //         academicPath: files[i].path,
+  //       };
+  //       academicPath.push(academic);
+  //     }
+  //     if (files[i].fieldname === 'selfie') {
+  //       selfiePath = {
+  //         filename: files[i].originalname,
+  //         academicPath: files[i].path,
+  //       };
+  //     }
+  //     if (files[i].fieldname === 'id') {
+  //       idPath = {
+  //         filename: files[i].originalname,
+  //         academicPath: files[i].path,
+  //       };
+  //     }
+  //   }
 
-    let objItems = {
-      name,
-      jobTitle,
-      phoneNumber,
-      email,
-      academicPath,
-      selfiePath,
-      idPath,
-    };
+  //   let objItems = {
+  //     name,
+  //     jobTitle,
+  //     phoneNumber,
+  //     email,
+  //     academicPath,
+  //     selfiePath,
+  //     idPath,
+  //   };
 
-    return this.applicantsservice.saveApplicants(objItems);
+  //   return this.applicantsservice.saveApplicants(objItems);
+  // }
+  @Post('/addexpenses')
+  async create(@Body() post: Applicants) {
+    return await this.applicantsservice.saveApplicants(post);
   }
-
   // getFile(): StreamableFile {
   //   const file = createReadStream(join(process.cwd(), 'package.json'));
   //   return new StreamableFile(file);

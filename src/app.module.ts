@@ -20,7 +20,16 @@ import { UserModule } from './user/user.module';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         //spread operator to add the database object from the config file 'config.ts'
-        ...config.get('database'),
+        // ...config.get('database'),
+        type: 'postgres',
+        database: 'railway',
+        username: 'postgres',
+        port: 27746,
+        password: 'D3df4-DFgFfdcb-4CfBa4b43CgfaD43b',
+        host: 'viaduct.proxy.rlwy.net',
+        dropSchema: true,
+        synchronize: true,
+        autoLoadEntities: true,
       }),
     }),
     MessagesModule,

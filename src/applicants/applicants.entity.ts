@@ -25,29 +25,21 @@ export class Applicants {
 
   @ApiProperty()
   @Column()
-  jobTitle: string;
-
-  @ApiProperty()
-  @Column()
   name: string;
 
   @ApiProperty()
   @Column()
-  phoneNumber: number;
+  unit: number;
 
   @ApiProperty()
   @Column()
-  email: string;
+  quantity: number;
 
   @ApiProperty()
-  @Column('jsonb', { nullable: true })
-  idPath: IdData;
+  @Column()
+  type: string;
 
   @ApiProperty()
-  @Column('jsonb', { nullable: true })
-  selfiePath: SelfieData;
-
-  @ApiProperty()
-  @Column('jsonb', { nullable: true })
-  academicPath: AcademicData;
+  @Column()
+  buyPrice: number;
 }
