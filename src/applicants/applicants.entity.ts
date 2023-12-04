@@ -29,7 +29,7 @@ export class Applicants {
 
   @ApiProperty()
   @Column()
-  unit: number;
+  unit: string;
 
   @ApiProperty()
   @Column()

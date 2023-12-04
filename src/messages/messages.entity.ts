@@ -16,7 +16,7 @@ export class Messages {
 
   @ApiProperty()
   @Column()
-  unit: number;
+  unit: string;
 
   @ApiProperty()
   @Column()
