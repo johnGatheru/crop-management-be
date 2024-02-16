@@ -5,7 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import config from 'config';
 
 import { ApplicantsModule } from './applicants/applicants.module';
-import { MessagesModule } from './messages/messages.module';
+import { StoresModule } from './stores/stores.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 
@@ -32,7 +32,7 @@ import { UserModule } from './user/user.module';
         autoLoadEntities: true,
       }),
     }),
-    MessagesModule,
+    StoresModule,
   ],
 })
 export class AppModule {}
