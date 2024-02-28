@@ -8,6 +8,11 @@ import { ApplicantsModule } from './applicants/applicants.module';
 import { StoresModule } from './stores/stores.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { OrderModule } from './order/order.module';
+import { FormsModule } from './forms/forms.module';
+import { StockModule } from './stock/stock.module';
+import { ProductsModule } from './products/products.module';
+import { PhotostoresModule } from './photostores/photostores.module';
 
 @Module({
   imports: [
@@ -33,6 +38,11 @@ import { UserModule } from './user/user.module';
       }),
     }),
     StoresModule,
+    OrderModule,
+    FormsModule,
+    StockModule,
+    ProductsModule,
+    PhotostoresModule,
   ],
 })
 export class AppModule {}

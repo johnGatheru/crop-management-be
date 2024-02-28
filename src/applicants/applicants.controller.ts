@@ -31,7 +31,8 @@ import { LocalAuthGuard } from 'src/auth/local-auth.guard';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { Applicants } from './applicants.entity';
 import { ApplicantsService } from './applicants.service';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('Aplicants info to -> to be modified')
 @Controller('/applicants')
 export class ApplicantsController {
   constructor(private applicantsservice: ApplicantsService) {}

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { from, Observable } from 'rxjs';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
@@ -16,6 +16,20 @@ export class StoresService {
   async findAllStores(): Promise<Stores[]> {
     return await this.StoresRepository.find();
   }
+
+  async findOne(storeId: number): Promise<Stores> {
+    const store = await this.StoresRepository.findOne({
+      where: { id: storeId },
+      relations: ['orders'],
+    });
+
+    if (!store) {
+      throw new NotFoundException(`Store with ID ${storeId} not found`);
+    }
+
+    return store;
+  }
+
   async updateStore(id: number, stores: Stores) {
     return await this.StoresRepository.update(id, stores);
   }
