@@ -9,8 +9,10 @@ export class CreateFormDto {
   @IsString()
   crop1: string;
 
+
   @IsString()
   crop2: string;
+
 
   @IsString()
   crop3: string;
@@ -20,6 +22,7 @@ export class CreateFormDto {
 
   @IsNotEmpty()
   isDemoDone: boolean;
+
 
   @IsString()
   visitNotes: string;
