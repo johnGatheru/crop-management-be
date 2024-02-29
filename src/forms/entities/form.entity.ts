@@ -30,7 +30,7 @@ export class Form {
 
   @ApiProperty()
   @Column()
-  isDemoDone: Boolean;
+  isDemoDone: boolean;
 
   @ApiProperty()
   @Column({ nullable: true })
