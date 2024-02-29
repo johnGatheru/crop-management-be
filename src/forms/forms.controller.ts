@@ -16,9 +16,12 @@ import { ApiTags } from '@nestjs/swagger';
 export class FormsController {
   constructor(private readonly formsService: FormsService) {}
 
-  @Post()
-  create(@Body() createFormDto: CreateFormDto) {
-    return this.formsService.create(createFormDto);
+  @Post(':storeId')
+  create(
+    @Body() createFormDto: CreateFormDto,
+    @Param('storeId') storeId: number,
+  ) {
+    return this.formsService.createForm(createFormDto, storeId);
   }
 
   @Get()
@@ -29,6 +32,11 @@ export class FormsController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.formsService.findOne(+id);
+  }
+
+  @Get('forms/specific/store/:id')
+  findOrdersSpecificStore(@Param('id') id: string) {
+    return this.formsService.getFormsByStoreId(+id);
   }
 
   @Patch(':id')
