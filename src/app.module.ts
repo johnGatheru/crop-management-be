@@ -32,6 +32,7 @@ import { PhotostoresModule } from './photostores/photostores.module';
         port: 27746,
         password: 'D3df4-DFgFfdcb-4CfBa4b43CgfaD43b',
         host: 'viaduct.proxy.rlwy.net',
+        // entities: ['src/**/*.entity{.ts,.js}'],
         dropSchema: true,
         synchronize: true,
         autoLoadEntities: true,

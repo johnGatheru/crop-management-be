@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+// import { ApiProperty } from '@nestjs/swagger';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 class AcademicData {
@@ -19,27 +19,27 @@ export class Applicants {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ApiProperty()
+  // @ApiProperty()
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 
-  @ApiProperty()
-  @Column()
-  name: string;
+  // @ApiProperty()
+  // @Column()
+  // name: string;
 
-  @ApiProperty()
-  @Column()
-  unit: string;
+  // @ApiProperty()
+  // @Column()
+  // unit: string;
 
-  @ApiProperty()
-  @Column()
-  quantity: number;
+  // @ApiProperty()
+  // @Column()
+  // quantity: number;
 
-  @ApiProperty()
-  @Column()
-  type: string;
+  // @ApiProperty()
+  // @Column()
+  // type: string;
 
-  @ApiProperty()
-  @Column()
-  buyPrice: number;
+  // @ApiProperty()
+  // @Column()
+  // buyPrice: number;
 }

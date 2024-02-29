@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Order } from 'src/order/entities/order.entity';
+import { Form } from '../forms/entities/form.entity';
+import { Order } from '../order/entities/order.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -81,4 +82,7 @@ export class Stores {
 
   @OneToMany(() => Order, (order) => order.store)
   orders: Order[];
+
+  @OneToMany(() => Form, (form) => form.store)
+  forms: Form[];
 }
