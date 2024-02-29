@@ -9,23 +9,21 @@ export class CreateFormDto {
   @IsString()
   crop1: string;
 
- 
+
   @IsString()
   crop2: string;
 
-  
+
   @IsString()
   crop3: string;
 
-  @IsNotEmpty()
   @IsString()
   farmAcreage: string;
 
   @IsNotEmpty()
-  @IsString()
   isDemoDone: boolean;
 
- 
+
   @IsString()
   visitNotes: string;
 }
