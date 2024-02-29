@@ -20,7 +20,7 @@ export class StoresService {
   async findOne(storeId: number): Promise<Stores> {
     const store = await this.StoresRepository.findOne({
       where: { id: storeId },
-      relations: ['orders', 'form'],
+      relations: ['orders', 'forms'],
     });
 
     if (!store) {
