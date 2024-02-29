@@ -17,20 +17,20 @@ export class Form {
   crop1: string;
 
   @ApiProperty()
-  @Column()
+  @Column({ nullable: true })
   crop2: string;
 
   @ApiProperty()
-  @Column()
+  @Column({ nullable: true })
   crop3: string;
 
   @ApiProperty()
-  @Column()
+  @Column({ nullable: true })
   farmAcreage: string;
 
   @ApiProperty()
   @Column()
-  isDemoDone: Boolean;
+  isDemoDone: boolean;
 
   @ApiProperty()
   @Column({ nullable: true })
