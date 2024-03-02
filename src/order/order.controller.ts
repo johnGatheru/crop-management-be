@@ -10,13 +10,14 @@ import {
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 @ApiTags('Order operations')
 @Controller('order')
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
   @Post(':storeId')
+  @ApiOperation({ summary: 'Create a resource' })
   async createOrder(
     @Body() createOrderDto: CreateOrderDto,
     @Param('storeId') storeId: number,
