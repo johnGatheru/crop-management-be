@@ -33,6 +33,10 @@ export class Form {
   isDemoDone: boolean;
 
   @ApiProperty()
+  @Column()
+  nextVisit: Date;
+
+  @ApiProperty()
   @Column({ nullable: true })
   visitNotes: string;
 
