@@ -34,7 +34,7 @@ export class Form {
 
   @ApiProperty()
   @Column()
-  nextVisit: Date;
+  nextVisit: string;
 
   @ApiProperty()
   @Column({ nullable: true })
